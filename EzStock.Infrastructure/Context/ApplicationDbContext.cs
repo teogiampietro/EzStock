@@ -9,6 +9,6 @@ namespace EzStock.Infrastructure.Context
         {
 
         }
-        DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
