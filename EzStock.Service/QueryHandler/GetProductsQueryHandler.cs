@@ -2,6 +2,7 @@
 using EzStock.Infrastructure.Context;
 using EzStock.Service.Queries;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace EzStock.Service.QueryHandler
 {
@@ -13,9 +14,7 @@ namespace EzStock.Service.QueryHandler
             context = _context; 
         }
 
-        public Task<List<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(context.Products.ToList());
-        }
+        public async Task<List<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken) 
+             => await context.Products.ToListAsync(cancellationToken: cancellationToken);
     }
 }
