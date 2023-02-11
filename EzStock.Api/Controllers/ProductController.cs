@@ -5,6 +5,7 @@ using EzStock.Service.Command;
 using EzStock.Service.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Formats.Asn1;
 
 namespace EzStock.Api.Controllers
 {
@@ -36,9 +37,9 @@ namespace EzStock.Api.Controllers
         [HttpGet("{productsIds}")]
         public async Task<List<Product>> GetById(string productsIds)
         {
-           var product = await mediator.Send(new GetProductsByIdQuery() { Ids = QueryParams.GetListInt(productsIds) });
+            var product = await mediator.Send(new GetProductsByIdQuery() { Ids = QueryParams.GetListInt(productsIds) });
 
-           return mapper.Map<List<Product>>(product);
+            return mapper.Map<List<Product>>(product);
         }
 
         [HttpPut("{id}")]
@@ -47,5 +48,10 @@ namespace EzStock.Api.Controllers
             command.IdProduct = id;
             return Ok(await mediator.Send(command));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id) =>
+            Ok(await mediator.Send(new DeleteProductByIdCommand() { Id = id }));
+
     }
 }
