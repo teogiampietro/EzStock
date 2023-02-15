@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzStock.Service.Command
+namespace EzStock.Service.Product.Command
 {
-    public class DeleteProductByIdCommand : IRequest<int>
+    public record UpdateProductCommand(int IdProduct, string Name, double Price) : INotification
     {
-        public int Id { get; set; }
     }
 }

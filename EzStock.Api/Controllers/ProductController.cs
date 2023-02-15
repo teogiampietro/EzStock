@@ -18,14 +18,6 @@ namespace EzStock.Api.Controllers
             mediator = _mediator;
             mapper = _mapper;
         }
-        [HttpPost]
-        public async Task<IActionResult> Post([FromQuery] ProductNotification input)
-        {
-            await mediator.Publish(input);
-
-            return StatusCode(201);
-        }
-
         [HttpGet]
         public async Task<List<Product>> GetAll([FromQuery] GetProductsQuery input)
         {
@@ -41,17 +33,25 @@ namespace EzStock.Api.Controllers
 
             return mapper.Map<List<Product>>(product);
         }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdateProductCommand command)
+        [HttpPost]
+        public async Task<IActionResult> Post(ProductCommand input)
         {
-            command.IdProduct = id;
-            return Ok(await mediator.Send(command));
+            await mediator.Publish(input);
+
+            return StatusCode(201);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateProductCommand command)
+        {
+            await mediator.Publish(command);
+            return StatusCode(201);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id) =>
-            Ok(await mediator.Send(new DeleteProductByIdCommand() { Id = id }));
-
+        public async Task<IActionResult> Delete(int id)
+        {
+            await mediator.Publish(new DeleteProductByIdCommand(id));
+            return StatusCode(201);
+        }
     }
 }
