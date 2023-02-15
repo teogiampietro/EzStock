@@ -1,8 +1,8 @@
 ﻿using EzStock.Infrastructure.Context;
-using EzStock.Service.Product.Command;
+using EzStock.Service.Products.Command;
 using MediatR;
 
-namespace EzStock.Service.Product.CommandHandler
+namespace EzStock.Service.Products.CommandHandler
 {
     internal class UpdateProductCommandHandler : INotificationHandler<UpdateProductCommand>
     {

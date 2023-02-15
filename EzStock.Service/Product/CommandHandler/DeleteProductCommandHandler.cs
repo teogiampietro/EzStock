@@ -1,9 +1,9 @@
 ﻿using EzStock.Infrastructure.Context;
-using EzStock.Service.Product.Command;
+using EzStock.Service.Products.Command;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace EzStock.Service.Product.CommandHandler
+namespace EzStock.Service.Products.CommandHandler
 {
     public class DeleteProductCommandHandler : INotificationHandler<DeleteProductByIdCommand>
     {

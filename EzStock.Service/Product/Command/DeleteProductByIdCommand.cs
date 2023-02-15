@@ -1,8 +1,7 @@
 ﻿using MediatR;
 
-namespace EzStock.Service.Product.Command
+namespace EzStock.Service.Products.Command;
+
+public record DeleteProductByIdCommand(int Id) : INotification
 {
-    public record DeleteProductByIdCommand(int Id) : INotification
-    {
-    }
 }

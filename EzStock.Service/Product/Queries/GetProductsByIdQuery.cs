@@ -1,7 +1,7 @@
 ﻿using EzStock.Domain.Entities;
 using MediatR;
 
-namespace EzStock.Service.Product.Queries
+namespace EzStock.Service.Products.Queries
 {
     public class GetProductsByIdQuery : IRequest<List<Product>>
     {

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using EzStock.Api.Util;
 using EzStock.Domain.Entities;
-using EzStock.Service.Command;
-using EzStock.Service.Queries;
+using EzStock.Service.Products.Command;
+using EzStock.Service.Products.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Formats.Asn1;
 
 namespace EzStock.Api.Controllers
 {

@@ -1,10 +1,10 @@
 ﻿using EzStock.Domain.Entities;
 using EzStock.Infrastructure.Context;
-using EzStock.Service.Product.Queries;
+using EzStock.Service.Products.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace EzStock.Service.Product.QueryHandler
+namespace EzStock.Service.Products.QueryHandler
 {
     class GetProductByIdQueryHandler : IRequestHandler<GetProductsByIdQuery, List<Product>>
     {
