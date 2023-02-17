@@ -4,10 +4,12 @@ using EzStock.Domain.Entities;
 using EzStock.Service.Products.Command;
 using EzStock.Service.Products.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzStock.Api.Controllers
 {
+    [Authorize]
     public class ProductController : MainController
     {
         private readonly IMediator mediator;
@@ -17,14 +19,14 @@ namespace EzStock.Api.Controllers
             mediator = _mediator;
             mapper = _mapper;
         }
-        [HttpGet]
+        [HttpGet]       
         public async Task<List<Product>> GetAll([FromQuery] GetProductsQuery input)
         {
             var product = await mediator.Send(input);
 
             return mapper.Map<List<Product>>(product);
         }
-
+        
         [HttpGet("{productsIds}")]
         public async Task<List<Product>> GetById(string productsIds)
         {
