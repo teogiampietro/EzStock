@@ -112,7 +112,11 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EzStock.Api v1"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "EzStock.Api v1");
+                c.DefaultModelsExpandDepth(-1);
+            });
         }
 
         app.UseHttpsRedirection();

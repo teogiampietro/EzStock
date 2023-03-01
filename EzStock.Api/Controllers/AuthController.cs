@@ -15,5 +15,13 @@ namespace EzStock.Api.Controllers
         [HttpPost]
         public Task<string> Token([FromBody] TokenCommand command) =>
            _mediator.Send(command);
+
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] UserCommand command)
+        {
+            await _mediator.Publish(command);
+
+            return StatusCode(201);
+        }
     }
 }
