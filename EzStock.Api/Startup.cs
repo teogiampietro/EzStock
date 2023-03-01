@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EzStock.Domain.Entities;
 using EzStock.Infrastructure.Context;
 using EzStock.Service;
 using MediatR;
@@ -50,7 +49,7 @@ public class Startup
                 In = ParameterLocation.Header,
                 Description = "Please insert JWT with Bearer into field",
                 Name = "Authorization",
-                Type = SecuritySchemeType.ApiKey
+                Type = SecuritySchemeType.ApiKey                
             });
 
             c.AddSecurityRequirement(new OpenApiSecurityRequirement {
@@ -93,7 +92,7 @@ public class Startup
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = Configuration["Jwt:Issuer"],
                         ValidAudience = Configuration["Jwt:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"] ?? "DefaultSecret"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"] ?? "DefaultSecret"))                        
                     };
                 });
        
@@ -107,7 +106,7 @@ public class Startup
         services.AddHostedService<SetupDataSeeder>();
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IdentityDataSeeder seeder)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
         {

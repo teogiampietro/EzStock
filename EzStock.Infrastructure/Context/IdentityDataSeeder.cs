@@ -15,29 +15,29 @@ namespace EzStock.Infrastructure.Context
         }
         public async Task SeedAdminUser()
         {
-            var superAdminRole = new IdentityRole
+            var adminRole = new IdentityRole
             {
                 Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                Name = "SuperAdmin",
-                NormalizedName = "SUPERADMIN"
+                Name = "admin",
+                NormalizedName = "admin".ToUpper()
             };
-            await CreateRoleAsync(superAdminRole);
+            await CreateRoleAsync(adminRole);
 
-            var superAdminUserPassword = "P@ssword1";
-            var superAdminUser = new IdentityUser
+            var adminPassword = "P@ssword1";
+            var adminUser = new IdentityUser
             {
                 Id = "b8633e2d-a33b-45e6-8329-1958b3252bbd",
-                UserName = "admin@example.nl",
-                NormalizedUserName = "ADMIN@EXAMPLE.NL",
-                Email = "admin@example.nl",
-                NormalizedEmail = "ADMIN@EXAMPLE.NL",
+                UserName = "administrator",
+                NormalizedUserName = "administrator".ToUpper(),
+                Email = "administrator@ezstock.com",
+                NormalizedEmail = "administrator@ezstock.com".ToUpper(),
                 EmailConfirmed = true,
             };
-            await CreateUserAsync(superAdminUser, superAdminUserPassword);
+            await CreateUserAsync(adminUser, adminPassword);
 
-            var superAdminInRole = await _userManager.IsInRoleAsync(superAdminUser, superAdminRole.Name);
-            if (!superAdminInRole)
-                await _userManager.AddToRoleAsync(superAdminUser, superAdminRole.Name);
+            var adminInRole = await _userManager.IsInRoleAsync(adminUser, adminRole.Name);
+            if (!adminInRole)
+                await _userManager.AddToRoleAsync(adminUser, adminRole.Name);
         }
 
         private async Task CreateRoleAsync(IdentityRole role)
